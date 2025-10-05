@@ -1,7 +1,7 @@
 #include <string.h>
 #include "args.h"
 
-void	init_args(args_data args[][1], char args_str[][3], int set_params[])
+void	init_args(args_data args[][1])
 {
 	int	i;
 
@@ -10,10 +10,10 @@ void	init_args(args_data args[][1], char args_str[][3], int set_params[])
 	{
 		args[i]->pos = 0;
 		args[i]->active = 0;
-		args[i]->str = args_str[i];
-		args[i]->params = set_params[i];
 		i++;
 	}
+	args[C]->str = "-c";
+	args[C]->params = 1;
 }
 
 //Check argv for arguments and set them in the struct

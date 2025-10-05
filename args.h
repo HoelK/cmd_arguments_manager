@@ -14,7 +14,7 @@ typedef struct args_data {
 	char	*str;
 }args_data;
 
-void	init_args(args_data args[][1], char args_str[][3], int set_params[]);
+void	init_args(args_data args[][1]);
 int	check_arg(args_data args[][1], char **argv, int argc);
 int	check_arg_params(args_data arg, char **argv);
 

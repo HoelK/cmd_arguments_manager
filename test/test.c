@@ -4,10 +4,8 @@
 int	main(int argc, char **argv)
 {
 	args_data	args[NUM_ARGS];
-	int	params[NUM_ARGS] = {1};
-	char	strs[NUM_ARGS][3] = {"-c"};
 
-	init_args(&args, strs, params);
+	init_args(&args);
 	if (check_arg(&args, argv, argc))
 		printf("success");
 	else

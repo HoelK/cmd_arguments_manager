@@ -21,8 +21,8 @@ It defines an array of args_data contains the following basic data about each ar
 
   - Add 1 to the NUM_ARGS define
   - Add an ENUM corresponding to the arguement
-  - Add a new string representing the arguement in your init_args call
-  - Add a new bool if there are params in your init_args call
+  - Add a new string representing the arguement in init_args()
+  - Add a new bool if there are params in init_args()
   - Add the parameter check in check_argparam if you need one
 The implementation of the actual use of the arguements are left to the programmer
 
@@ -30,5 +30,3 @@ The implementation of the actual use of the arguements are left to the programme
 
   - ENUM makes the array of struct impossible to sort
   - args_str in init_args() has to be in the same order has the ENUM
-  - args_str can only be of size 3, one '-', one letter and NULL
-  - annoying to create static variables in main function

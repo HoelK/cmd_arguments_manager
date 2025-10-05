@@ -1,7 +1,7 @@
 #include <string.h>
 #include "args.h"
 
-void	init_args(args_data args[][1], char args_str[][3], int set_params[])
+void	init_args(args_data args[][1])
 {
 	int	i;
 
@@ -10,10 +10,10 @@ void	init_args(args_data args[][1], char args_str[][3], int set_params[])
 	{
 		args[i]->pos = 0;
 		args[i]->active = 0;
-		args[i]->str = args_str[i];
-		args[i]->params = set_params[i];
 		i++;
 	}
+	//args[enum]->str
+	//args[enum]->params
 }
 
 //Check argv for arguments and set them in the struct
@@ -52,8 +52,8 @@ int	check_arg(args_data args[][1], char **argv, int argc)
 	return (1);
 }
 
-//Return 1 in case of error
 //Return 0 if success
+//Return 1 in case of error
 int	check_arg_params(args_data arg, char **argv)
 {
 	/*if (strcmp(arg.str, "-c") == 0)
