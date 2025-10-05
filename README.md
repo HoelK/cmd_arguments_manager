@@ -1,8 +1,8 @@
 
-INTRODUCTION
+INTRODUCTION 
 This module was made to manage command lines arguments of a program trying to make them has easier to implement and modify has possible by implementing a structure and a way to check args.
 
-STRUCTURE
+STRUCTURE 
 It defines an array of args_data contains the following basic data about each arg :
   - String representing it
   - Bool if its active
