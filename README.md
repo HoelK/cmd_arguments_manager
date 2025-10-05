@@ -29,4 +29,3 @@ The implementation of the actual use of the arguements are left to the programme
 ## KNOWN ISSUES
 
   - ENUM makes the array of struct impossible to sort
-  - args_str in init_args() has to be in the same order has the ENUM
