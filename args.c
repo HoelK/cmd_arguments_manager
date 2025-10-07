@@ -2,7 +2,7 @@
 
 char	**init_args_n_targets(args_data args[][1], int argc)
 {
-	int	i;
+	int		i;
 	char	**targets;
 
 	i = 0;
@@ -15,8 +15,8 @@ char	**init_args_n_targets(args_data args[][1], int argc)
 		args[i]->active = 0;
 		i++;
 	}
-	args[C]->str = "-c";
-	args[C]->params = 1;
+	/*args[ENUM]->str = "STRING";
+	args[ENUM]->params = ;*/
 	return (targets);
 }
 
@@ -34,14 +34,14 @@ int	check_cmd(args_data args[][1], char **targets, char **argv, int argc)
 		if (argv[i][0] == '-')
 			error = check_arg(args, targets, argv, i);
 		else
-			error = check_target(targets, argv[i], argc);
+			error = check_target(args, targets, argv, i);
 		if (error)
 			return (0);
 	}
 	return (1);
 }
 
-int	check_arg(args_data args[][1],char **targets, char **argv, int position)
+int	check_arg(args_data args[][1], char **targets, char **argv, int position)
 {
 	int	i;
 
@@ -59,48 +59,34 @@ int	check_arg(args_data args[][1],char **targets, char **argv, int position)
 	return (0);
 }
 
-int	check_target(char **targets, char *argument, int argc)
-{
-	int	i;
-	int	file;
-
-	i = 0;
-	if (file = open(argument, O_RDONLY) == 0)
-		return (1);
-	close (file);
-	while (targets[i] != NULL && i < (argc - 1))
-		i++;
-	targets[i] = argument;
-
-	return (0);
-}
-
-int	is_numeric(char *str)
+int	check_target(args_data args[][1], char **targets, char **argv, int position)
 {
 	int	i;
 
 	i = 0;
-	if (!str || str[0] == 0)
-		return (0);
-	while (str[i] != 0)
+	while (i < NUM_ARGS)
 	{
-		if (str[i] < '0' || str[i] > '9')
+		if ((args[i]->active && args[i]->params) && args[i]->pos == (position - 1))
 			return (0);
 		i++;
 	}
-	return (1);
+	i = 0;
+	while (targets[i] != NULL)
+		i++;
+	targets[i] = argv[position];
+	return (0);
 }
 
 //Return 1 in case of error
 //Return 0 if success
 int	check_arg_params(args_data arg, char **argv)
 {
-	if (strcmp(arg.str, "-c") == 0)
+	if (strcmp(arg.str, "STRING") == 0)
 	{
-		if  (is_numeric(argv[arg.pos+1]))
+		/*if (is_numeric(argv[arg.pos + 1]))
 			return (0);
 		else
-			return (1);
+			return (1);*/
 	}
 	return (1);
 }

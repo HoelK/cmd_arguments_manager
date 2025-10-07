@@ -2,7 +2,7 @@
 
 char	**init_args_n_targets(args_data args[][1], int argc)
 {
-	int	i;
+	int		i;
 	char	**targets;
 
 	i = 0;
@@ -34,14 +34,14 @@ int	check_cmd(args_data args[][1], char **targets, char **argv, int argc)
 		if (argv[i][0] == '-')
 			error = check_arg(args, targets, argv, i);
 		else
-			error = check_target(targets, argv[i], argc);
+			error = check_target(args, targets, argv, i);
 		if (error)
 			return (0);
 	}
 	return (1);
 }
 
-int	check_arg(args_data args[][1],char **targets, char **argv, int position)
+int	check_arg(args_data args[][1], char **targets, char **argv, int position)
 {
 	int	i;
 
@@ -59,19 +59,21 @@ int	check_arg(args_data args[][1],char **targets, char **argv, int position)
 	return (0);
 }
 
-int	check_target(char **targets, char *argument, int argc)
+int	check_target(args_data args[][1], char **targets, char **argv, int position)
 {
 	int	i;
-	int	file;
 
 	i = 0;
-	if (file = open(argument, O_RDONLY) == 0)
-		return (1);
-	close (file);
-	while (targets[i] != NULL && i < (argc - 1))
+	while (i < NUM_ARGS)
+	{
+		if ((args[i]->active && args[i]->params) && args[i]->pos == (position - 1))
+			return (0);
 		i++;
-	targets[i] = argument;
-
+	}
+	i = 0;
+	while (targets[i] != NULL)
+		i++;
+	targets[i] = argv[position];
 	return (0);
 }
 
@@ -97,7 +99,7 @@ int	check_arg_params(args_data arg, char **argv)
 {
 	if (strcmp(arg.str, "-c") == 0)
 	{
-		if  (is_numeric(argv[arg.pos+1]))
+		if (is_numeric(argv[arg.pos + 1]))
 			return (0);
 		else
 			return (1);

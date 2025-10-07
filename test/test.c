@@ -2,14 +2,18 @@
 
 int	main(int argc, char **argv)
 {
-	char	**targets;
+	char		**targets;
 	args_data	args[NUM_ARGS];
 
 	targets = init_args_n_targets(&args, argc);
 	if (check_cmd(&args, targets, argv, argc))
-		printf("success");
+		printf("success\n");
 	else
-		printf("error");
-	return (0);
-}
+		printf("error\n");
 
+	int	i = 0;
+	while (targets[i] != NULL)
+		printf("%s\n", targets[i++]);
+	free(targets);
+	return (0);	
+}
